@@ -1,0 +1,21 @@
+pip install seaborn matplotlib
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+def generate_color_palette():
+    # Set the style of the plot
+    sns.set(style="whitegrid")
+
+    # Define a color palette
+    palette = sns.color_palette("husl", 8)
+
+    # Plot a bar chart to display the colors in the palette
+    plt.figure(figsize=(8, 1))
+    sns.barplot(x=list(range(len(palette))), y=[1] * len(palette), palette=palette)
+    plt.title("Color Palette for Designers")
+    plt.xlabel("Color Index")
+    plt.yticks([])  # Hide y-axis
+    plt.show()
+
+if __name__ == "__main__":
+    generate_color_palette()
