@@ -30,3 +30,4 @@ if __name__ == "__main__":
 
     # Plot the color palette
     plot_color_palette(my_palette)
+
