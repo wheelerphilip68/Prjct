@@ -1,21 +1,32 @@
-pip install seaborn matplotlib
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-def generate_color_palette():
-    # Set the style of the plot
-    sns.set(style="whitegrid")
+def generate_color_palette(palette_type="husl", num_colors=8):
+    """
+    Generate a color palette using Seaborn.
 
-    # Define a color palette
-    palette = sns.color_palette("husl", 8)
+    Parameters:
+    - palette_type: The color space for the palette (default is "husl").
+    - num_colors: The number of colors in the palette (default is 8).
+    """
+    palette = sns.color_palette(palette_type, num_colors)
+    return palette
 
-    # Plot a bar chart to display the colors in the palette
-    plt.figure(figsize=(8, 1))
-    sns.barplot(x=list(range(len(palette))), y=[1] * len(palette), palette=palette)
+def plot_color_palette(palette):
+    """
+    Plot the given color palette.
+
+    Parameters:
+    - palette: The color palette to be plotted.
+    """
+    plt.figure(figsize=(len(palette), 1))
+    sns.palplot(palette)
     plt.title("Color Palette for Designers")
-    plt.xlabel("Color Index")
-    plt.yticks([])  # Hide y-axis
     plt.show()
 
 if __name__ == "__main__":
-    generate_color_palette()
+    # Customize the color palette by changing parameters or using different palette types
+    my_palette = generate_color_palette(palette_type="viridis", num_colors=10)
+
+    # Plot the color palette
+    plot_color_palette(my_palette)
