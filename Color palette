@@ -1,15 +1,23 @@
 import seaborn as sns
 import matplotlib.pyplot as plt
+import numpy as np
 
-def generate_color_palette(palette_type="husl", num_colors=8):
+def generate_color_palette(palette_type="husl", num_colors=8, use_gradients=False, start_color="#3498db", end_color="#e74c3c"):
     """
     Generate a color palette using Seaborn.
 
     Parameters:
     - palette_type: The color space for the palette (default is "husl").
     - num_colors: The number of colors in the palette (default is 8).
+    - use_gradients: Whether to generate a gradient palette (default is False).
+    - start_color: The starting color for the gradient (if use_gradients is True).
+    - end_color: The ending color for the gradient (if use_gradients is True).
     """
-    palette = sns.color_palette(palette_type, num_colors)
+    if use_gradients:
+        gradient = np.linspace(0, 1, num_colors)
+        palette = sns.color_palette(sns.light_palette(start_color, reverse=True, as_cmap=True), n_colors=num_colors)
+    else:
+        palette = sns.color_palette(palette_type, num_colors)
     return palette
 
 def plot_color_palette(palette):
@@ -26,8 +34,7 @@ def plot_color_palette(palette):
 
 if __name__ == "__main__":
     # Customize the color palette by changing parameters or using different palette types
-    my_palette = generate_color_palette(palette_type="viridis", num_colors=10)
+    my_palette = generate_color_palette(palette_type="viridis", num_colors=10, use_gradients=True)
 
     # Plot the color palette
     plot_color_palette(my_palette)
-
