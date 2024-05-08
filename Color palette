@@ -1,6 +1,7 @@
 import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
+import random
 
 def generate_color_palette(palette_type="husl", num_colors=8, use_gradients=False, start_color="#3498db", end_color="#e74c3c"):
     """
@@ -32,9 +33,32 @@ def plot_color_palette(palette):
     plt.title("Color Palette for Designers")
     plt.show()
 
+def generate_random_color():
+    """
+    Generate a random color in hexadecimal format.
+    """
+    return "#{:06x}".format(random.randint(0, 0xFFFFFF))
+
+def generate_custom_palette(colors):
+    """
+    Generate a custom color palette.
+
+    Parameters:
+    - colors: List of colors in hexadecimal format.
+    """
+    return sns.color_palette(colors)
+
 if __name__ == "__main__":
-    # Customize the color palette by changing parameters or using different palette types
+    # Generate a color palette
     my_palette = generate_color_palette(palette_type="viridis", num_colors=10, use_gradients=True)
 
     # Plot the color palette
     plot_color_palette(my_palette)
+
+    # Generate a random color
+    random_color = generate_random_color()
+    print("Random Color:", random_color)
+
+    # Generate a custom palette
+    custom_palette = generate_custom_palette(["#3498db", "#2ecc71", "#e74c3c", "#f39c12", "#9b59b6"])
+    plot_color_palette(custom_palette)
